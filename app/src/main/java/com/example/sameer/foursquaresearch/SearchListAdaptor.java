@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -16,22 +15,19 @@ import java.util.List;
  */
 public class SearchListAdaptor extends BaseAdapter {
     private final Context context;
-    private List<VenueContent.VenueItem> venueItemList = null;
+    private List<SearchedContent.VenueItem> venueItemList = null;
 
 
     public SearchListAdaptor(Context context) {
-//        super(context, R.layout.artist_list_item, values);
-//        Log.d("AlbumListAdaptor", ".......creating with artistID:" + artistID);
-
         this.context = context;
-        venueItemList = VenueContent.venueItemsList;
+        venueItemList = SearchedContent.venueItemsList;
     }
 
     public int getCount() {
         int count = 0;
         if (venueItemList!=null)
             count = venueItemList.size();
-        Log.d("AlbumListAdaptor", ".......getCount:" + count);
+        Log.d("SearchListAdaptor", ".......getCount:" + count);
         return count;
     }
 
@@ -49,17 +45,14 @@ public class SearchListAdaptor extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Log.d("AlbumListAdaptor", ".......getView @ " + position);
+        Log.d("SearchListAdaptor", ".......getView @ " + position);
 
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.venue_list_item, parent, false);
+        View rowView = inflater.inflate(R.layout.search_list_item, parent, false);
 
         TextView textView = (TextView) rowView.findViewById(R.id.textViewAlbumTitle);
         textView.setText( venueItemList.get(position).getName() );
-
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.imageViewAlbumPicture);
-//        Ion.with(imageView).placeholder(R.mipmap.ic_launcher).load(venueItemList.get(position).getPicture());
 
         return rowView;
     }
